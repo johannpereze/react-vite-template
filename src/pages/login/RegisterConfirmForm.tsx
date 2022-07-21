@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Typography } from "@mui/material";
+import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import * as yup from "yup";
 import { useAppSelector } from "../../app/hooks";
 import type { ConfirmCode } from "../../auth/confirmSignUp";
 import resendAuthConfirmation from "../../auth/resendAuthConfirmation";
-import TextField from "../../components copy/textField/TextField";
 
 interface RegisterConfirmFormProps {
   submit: (values: ConfirmCode) => void;
@@ -53,8 +52,8 @@ export default function RegisterConfirmForm({
   };
 
   useEffect(() => {
-    // TODO: any
-    let intervalId: any;
+    // TODO:  a second resend does not starts the counter
+    let intervalId: ReturnType<typeof setInterval>;
     if (codeSended) {
       setTimeout(() => {
         setDisabled(false);
@@ -81,10 +80,15 @@ export default function RegisterConfirmForm({
       <Box sx={{ mt: 2, mb: 0 }}>
         <TextField
           fullWidth
-          type="text"
-          formik={formik}
           name="confirmCode"
           label={t("login.confirmation_code")}
+          value={formik.values.confirmCode}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={
+            formik.touched.confirmCode && Boolean(formik.errors.confirmCode)
+          }
+          helperText={formik.touched.confirmCode && formik.errors.confirmCode}
         />
       </Box>
       <Button

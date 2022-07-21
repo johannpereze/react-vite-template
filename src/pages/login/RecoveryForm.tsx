@@ -1,9 +1,15 @@
-import { Alert, Box, Button, Paper, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import TextField from "../../components copy/textField/TextField";
 
 export default function RecoveryForm() {
   const { t } = useTranslation();
@@ -21,7 +27,6 @@ export default function RecoveryForm() {
     },
     validationSchema,
     onSubmit: () => {
-      // alert(JSON.stringify(values, null, 2)) TODO: check if this is needed
       navigate("/");
     },
     validateOnBlur: true,
@@ -46,9 +51,13 @@ export default function RecoveryForm() {
       <Box sx={{ mt: 2, mb: 0 }}>
         <TextField
           fullWidth
-          formik={formik}
           name="email"
           label={t("login.email")}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
         />
       </Box>
 

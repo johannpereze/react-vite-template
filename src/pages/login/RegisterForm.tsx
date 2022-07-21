@@ -4,6 +4,7 @@ import {
   Checkbox,
   FormControlLabel,
   Link,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
@@ -12,8 +13,7 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import * as yup from "yup";
 import { UserAttributes } from "../../auth/signUp";
-import PasswordField from "../../components copy/passwordField/PasswordField";
-import TextField from "../../components copy/textField/TextField";
+import PasswordField from "../../components/passwordField/PasswordField";
 
 interface SignUpValues extends UserAttributes {
   password2: string;
@@ -91,41 +91,61 @@ export default function RegisterForm({ submit }: RegisterFormProps) {
       <Box sx={{ mt: 2, mb: 0 }}>
         <TextField
           fullWidth
-          formik={formik}
           name="givenName"
           label={t("login.first_name")}
+          value={formik.values.givenName}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.givenName && Boolean(formik.errors.givenName)}
+          helperText={formik.touched.givenName && formik.errors.givenName}
         />
       </Box>
       <Box sx={{ mt: 2, mb: 0 }}>
         <TextField
           fullWidth
-          formik={formik}
           name="familyName"
           label={t("login.last_name")}
+          value={formik.values.familyName}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.familyName && Boolean(formik.errors.familyName)}
+          helperText={formik.touched.familyName && formik.errors.familyName}
         />
       </Box>
       <Box sx={{ mt: 2, mb: 0 }}>
         <TextField
           fullWidth
-          formik={formik}
           name="email"
           label={t("login.email")}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
         />
       </Box>
       <Box sx={{ mt: 2, mb: 0 }}>
         <PasswordField
           fullWidth
-          formik={formik}
           name="password"
           label={t("login.password")}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
         />
       </Box>
       <Box sx={{ mt: 2, mb: 0 }}>
         <PasswordField
           fullWidth
-          formik={formik}
           name="password2"
           label={t("login.repeat_password")}
+          value={formik.values.password2}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password2 && Boolean(formik.errors.password2)}
+          helperText={formik.touched.password2 && formik.errors.password2}
         />
       </Box>
 

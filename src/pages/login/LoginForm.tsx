@@ -1,13 +1,12 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Link, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import * as yup from "yup";
 import { useAppSelector } from "../../app/hooks";
 import { LoginValues, SetSubmitting } from "../../auth/signIn";
-import PasswordField from "../../components copy/passwordField/PasswordField";
-import TextField from "../../components copy/textField/TextField";
+import PasswordField from "../../components/passwordField/PasswordField";
 
 interface LoginFormProps {
   submit: (
@@ -44,17 +43,25 @@ export default function LoginForm({ submit }: LoginFormProps) {
       <Box sx={{ mt: 2, mb: 0 }}>
         <TextField
           fullWidth
-          formik={formik}
           name="email"
           label={t("login.email")}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
         />
       </Box>
       <Box sx={{ mt: 2, mb: 0 }}>
         <PasswordField
           fullWidth
-          formik={formik}
           name="password"
           label={t("login.password")}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
         />
       </Box>
       <LoadingButton

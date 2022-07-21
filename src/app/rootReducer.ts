@@ -1,15 +1,15 @@
 import { combineReducers } from "@reduxjs/toolkit";
-// import authReducer from "../auth/authSlice"; TODO
-// Change Slice to Reducer because the export ir fooSlice.reducer
+// Change Slice to Reducer because the export is fooSlice.reducer
+import authReducer from "../auth/authSlice";
 import counterReducer from "../components/counter/counterSlice";
-// import headerReducer from "../components/header/headerSlice"; TODO
-// import themeManagerReducer from "../components/managers/themeManager/themeManagerSlice"; TODO
+import headerReducer from "../components/header/headerSlice";
+import themeManagerReducer from "../components/managers/themeManager/themeManagerSlice";
 
 const rootReducer = combineReducers({
-  // auth: authReducer,
+  auth: authReducer,
   counter: counterReducer,
-  // header: headerReducer,
-  // themeManager: themeManagerReducer,
+  header: headerReducer,
+  themeManager: themeManagerReducer,
 });
 
 export default rootReducer;

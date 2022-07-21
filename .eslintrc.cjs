@@ -23,5 +23,22 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint"],
-  rules: {},
+  rules: {
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        classes: true,
+        functions: true,
+        typedefs: false,
+      },
+    ],
+  },
+  overrides: [
+    {
+      files: ["*.tsx"],
+      rules: {
+        "no-undef": "off",
+      },
+    },
+  ],
 };
